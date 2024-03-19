@@ -1,0 +1,848 @@
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        .hire-team {
+            width: 100vw;
+            padding: 100px 0px 0px 150px;
+            margin: auto;
+            display: flex;
+            height: 80vh;
+        }
+
+        .hire-team>div {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            height: 70vh;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .hire-team p {
+            font: 400 20px rubik;
+            line-height: 26px !important;
+        }
+
+        h3 {
+            font: 500 26px rubik;
+            color: #00a2ff;
+            line-height: 40px;
+        }
+
+        h4 {
+            font: 400 25px rubik;
+            line-height: 35px;
+            color: #333333;
+        }
+
+        h5 {
+            font: 400 16px rubik;
+            line-height: 22px;
+            color: #333333;
+        }
+
+        .input-block p {
+            font: 400 18px inter;
+            line-height: 32px;
+            color: #2c2c2c;
+            margin: 0px !important;
+        }
+
+        .hire-team>div>form>div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3%;
+        }
+
+        .hire-team>div>form>div>div {
+            width: 48.5%;
+        }
+
+        .hire-team>div>form>div>div>input::placeholder {
+            font-family: 'Rubik' !important;
+            font: 400 18px inter;
+            color: #CBCBCB;
+        }
+
+        .hire-team>div>form>div>div>input {
+            font-family: 'Rubik' !important;
+            font: 400 16px inter;
+            padding: 15px 0px 15px 10px;
+            width: 100%;
+            line-height: 14px;
+            color: #333333;
+            outline: none;
+            border-radius: 4px;
+            margin: 20px 0px;
+            border: 1px solid #CBCBCB;
+            height: 60px !important;
+        }
+
+        .hire-team input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            display: none;
+        }
+
+        .hire-team button {
+            margin-top: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #00A2FF;
+            outline: none;
+            border: none;
+            color: #333333;
+            font-family: rubik !important;
+            font: 500 18px inter;
+            padding: 15px 35px;
+            transition: all 0.2s linear;
+        }
+
+        .hire-team button:hover {
+            background-color: #FFD600;
+        }
+
+        .option-block {
+            height: 70vh !important;
+            max-width: 100vw;
+            width: 75%;
+            margin: auto;
+            position: relative;
+            display: none;
+        }
+
+        .btn {
+            display: none;
+        }
+
+        .options {
+            width: 80%;
+            margin: 100px auto 0px auto;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #333333;
+            display: none;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .content>span {
+            position: absolute;
+            top: -160px;
+            right: -130px;
+            background-color: #00a2ff;
+            padding: 5px 30px;
+            border-radius: 30px;
+            font: 400 30px inter;
+            color: #ffffff;
+            z-index: 999999;
+        }
+
+        .content>div {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            margin: auto;
+
+        }
+
+        .content>div>div {
+            width: 20%;
+            /*gap: 30px;*/
+            text-align: center;
+
+        }
+
+        .content>div>div>label {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            border-radius: 50%;
+            height: 150px;
+            background-color: #f8f8f8 !important;
+            position: relative;
+            /* margin: auto; */
+        }
+
+        .content>div>div>label>div>img {
+            width: 50%;
+
+        }
+
+        .content>div>div>label> :nth-child(2) {
+            position: absolute;
+            bottom: 8px;
+            left: 42%;
+
+        }
+
+        .content>div>div>h5 {
+            padding-top: 20px;
+            width: 150px;
+        }
+
+        .check {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .prev-next {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+            padding: 20px 0px;
+        }
+
+        .prev-next>button {
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #00a2ff;
+            outline: none;
+            border: none;
+            color: #ffffff;
+            font: 500 16px rubik;
+            text-transform: uppercase;
+            padding: 10px 35px;
+            transition: all 0.3s linear;
+        }
+
+
+        .prev-next> :nth-child(1) {
+            background-color: transparent;
+            color: #333333;
+            font: 600 16px rubik;
+            padding: 0px 0px;
+            transition: all 0.3s linear;
+        }
+
+        .prev-next>button:hover {
+            background-color: #00a2ffd6;
+        }
+
+        .prev-next> :nth-child(1):hover {
+            color: #00a2ff;
+            background-color: transparent;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        .active-border {
+            border: 1px solid #00a2ff;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .submitted {
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .submitted>div {
+            width: 100px !important;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f8f8;
+        }
+
+        .submitted>div>img {
+            width: 70px;
+        }
+
+        .submitted>h2 {
+            font: 500 30px rubik;
+            color: #00a2ff;
+        }
+
+        .submitted>a {
+            text-decoration: none;
+            border-radius: 4px;
+            background-color: #00a2ff;
+            color: #ffffff;
+            font: 500 16px rubik;
+            text-transform: uppercase;
+            padding: 15px 35px;
+            transition: all 0.3s linear;
+        }
+
+        .submitted>a:hover {
+            background-color: #FFD600;
+        }
+
+        .submittedBlock {
+            border: none;
+        }
+
+        .form-t-div {
+            width: 50%;
+            align-items: flex-end !important;
+        }
+
+        .form-t-div img {
+            margin: 0px 0px 0px 220px;
+            width: 70%;
+            float: right !important;
+        }
+
+        .logo-t {
+            width: 100vw;
+            position: sticky;
+            top: 0px;
+            background-color: #fff;
+            margin: -30px 0px 0px 0px;
+            padding: 10px 0px 10px 130px;
+            z-index: 1;
+        }
+
+        .logo-t img {
+            width: 360px;
+            height: 60px;
+        }
+
+        @media screen and (max-width:768px) {
+            .content>div {
+                flex-wrap: wrap;
+            }
+
+            .content>div>div {
+                width: 50%;
+                margin: 0px 0px 50px 0px;
+            }
+
+            .content>div>div>label {
+                margin: auto;
+                width: 170px;
+                height: 170px;
+            }
+
+            .content>div>div>h5 {
+                margin: auto;
+            }
+
+            .option-block {
+                width: 80%;
+            }
+
+            .options {
+                width: 95%;
+                padding-bottom: 0px;
+            }
+
+            .content>span {
+                top: -40%;
+                right: -10%;
+            }
+
+            .logo-t {
+                padding: 10px 20px 10px 2px;
+            }
+
+            .form-t-div {
+                display: none !important;
+            }
+
+            .hire-team {
+                padding: 0px 0px;
+            }
+
+            .hire-team>div {
+                width: 100%;
+                margin: 0px;
+                padding: 0px 20px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .logo-t img {
+                width: 200px;
+                height: 40px;
+                padding: 0px 0px 0px 10px;
+            }
+
+            .logo-t {
+                padding: 10px 0px 10px 0px;
+                margin: -50px 0px 0px 0px;
+            }
+
+            .hire-team {
+                height: 100vh;
+                margin: 0px 0px 0px 0px;
+            }
+
+            .hire-team>div {
+                margin: 0px 0px;
+                padding: 0px 10px;
+            }
+
+            .hire-team>div>form>div>div {
+                width: 100%;
+            }
+
+            .hire-team>div {
+                width: 100%;
+            }
+
+            .hire-team h3 {
+                text-align: left;
+                line-height: 35px !important;
+                padding: 120px 0px 0px 0px;
+            }
+
+            .hire-team>div>p {
+                text-align: left;
+                font-size: 18px !important;
+                margin: 0px;
+            }
+
+            .hire-team>div>form>div>div>input {
+                height: 50px !important;
+                margin: 10px 0px;
+            }
+
+            .options {
+                width: 100%;
+                margin: 20px 0px 0px 0px;
+            }
+
+            .option-block {
+                width: 100%;
+                padding: 0px 25px;
+            }
+
+            .content>div>div>label {
+                width: 100px;
+                height: 100px;
+            }
+
+            .content>span {
+                top: -45px;
+                right: 0px;
+                padding: 2px 20px;
+                font: 400 18px rubik;
+            }
+
+            .prev-next {
+                width: 100%;
+            }
+
+            .submitted {
+                margin: 50px auto !important;
+            }
+
+            .elementor-column-gap-default>.elementor-column>.elementor-element-populated {
+                padding: 0px !important;
+            }
+    </style>
+
+
+    <div class="logo-t">
+        <a href="https://soft-enterprise.com/"><img
+                src="https://soft-enterprise.com/wp-content/uploads/2019/02/logo-01.svg" class="filter" class="filter"
+                alt="Logo Error"> </a>
+    </div>
+    <section class="hire-team">
+        <div>
+            <h3>
+                Appreciating Your Interest in Soft Enterprise
+            </h3>
+            <p>
+                We'd like to inquire about your business requirements to gain a deeper understanding of your specific
+                needs.
+            </p>
+            <form action="#" id="myForm">
+                <div>
+                    <div class="input-block">
+                        <p class="lable-t">
+                            Name
+                        </p>
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="input-block">
+                        <p class="lable-t">
+                            Phone Number
+                        </p>
+                        <input type="number" placeholder="Your Phone Number">
+                    </div>
+                    <div class="input-block">
+                        <p>
+                            Email
+                        </p>
+                        <input type="email" placeholder=" Your Email">
+                    </div>
+                </div>
+                <button type="submit">
+                    GET STARTED <i class="fa-solid fa-angle-right"></i>
+                </button>
+            </form>
+        </div>
+        <div class="form-t-div">
+            <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-image-01.png" class="filter"
+                class="filter" alt=" ">
+        </div>
+    </section>
+    <div class="option-block">
+        <div class="options active">
+            <div class="content looking-for">
+                <span>1/4</span>
+                <h4>I am looking for:</h4>
+                <div>
+                    <div>
+                        <label for="Developer" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-01.svg"
+                                    class="filter" class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>Developers</h5>
+                    </div>
+                    <div><label for="Designers" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-02.svg"
+                                    class="filter" class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>Designers</h5>
+                    </div>
+                    <div><label for="Project-Managers" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-03.svg"
+                                    class="filter" class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>Project Managers</h5>
+                    </div>
+                    <div><label for="I-am-not-sure" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-04.svg"
+                                    class="filter" class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>I am Not Sure</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="options">
+            <div class="content looking-for">
+                <span>2/4</span>
+                <h4>The Resource is Needed For</h4>
+                <div>
+                    <div>
+                        <label for="Developer" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-05.svg"
+                                    class="filter" class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>1 To 3 Months</h5>
+                    </div>
+                    <div><label for="Designers" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-06.svg"
+                                    class="filter" class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>3 To 6 Months</h5>
+                    </div>
+                    <div><label for="Project-Managers" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-07.svg"
+                                    class="filter" class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>Longer Than 6 Months</h5>
+                    </div>
+                    <div><label for="I-am-not-sure" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-08.svg"
+                                    class="filter" class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>I'll Decide Later</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="options">
+            <div class="content looking-for">
+                <span>3/4</span>
+                <h4>The Amount Of Time Required Is</h4>
+                <div>
+                    <div>
+                        <label for="Developer" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-09.svg"
+                                    class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>Full-Time</h5>
+                    </div>
+                    <div><label for="Designers" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-10.svg"
+                                    class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>Part-Time</h5>
+                    </div>
+                    <div><label for="Project-Managers" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-11.svg"
+                                    class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>Hourly</h5>
+                    </div>
+                    <div><label for="I-am-not-sure" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-12.svg"
+                                    class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>I'll Decide Later</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="options">
+            <div class="content looking-for">
+                <span>4/4</span>
+                <h4>The Resource Should Begin Working</h4>
+                <div>
+                    <div>
+                        <label for="Developer" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-13.svg"
+                                    class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>Immediately</h5>
+                    </div>
+                    <div><label for="Designers" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-14.svg"
+                                    class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>A Week From Now</h5>
+                    </div>
+                    <div><label for="Project-Managers" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-15.svg"
+                                    class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>One Month From Now</h5>
+                    </div>
+                    <div><label for="I-am-not-sure" class="label-developer">
+                            <div> <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/hire-page-16.svg"
+                                    class="filter" alt=" "></div>
+                            <div><img class="check"
+                                    src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-4.png" alt=" ">
+                            </div>
+                        </label>
+                        <h5>I’ll Decide Later</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="options submittedBlock">
+            <div class="content looking-for">
+                <div class="submitted">
+                    <div>
+                        <img src="https://soft-enterprise.com/wp-content/uploads/2019/02/Frame-5-1.webp" alt="">
+                    </div>
+                    <h4>Thank You</h4>
+                    <p>Our Team Will Contact You Shortly!</p>
+                    <a href="/">VISIT THE HOME PAGE</a>
+                </div>
+            </div>
+        </div>
+        <div class="prev-next">
+            <button class="prev"><i class="fa-solid fa-angle-left"></i>&nbsp; BACK</button>
+            <button class="next">NEXT &nbsp;<i class="fa-solid fa-angle-right"></i></button>
+        </div>
+
+    </div>
+    <script>
+        var labels = document.getElementsByClassName("label-developer");
+        var optionBlock = document.querySelector(".option-block");
+        var hireTeam = document.querySelector(".hire-team");
+        var check = document.getElementsByClassName("check");
+        var next = document.querySelector(".next");
+        var options = document.querySelectorAll(".options");
+        var previous = document.querySelector(".prev");
+        var prevNext = document.querySelector(".prev-next");
+        var currentIndex = 1;
+        var isFourthLabelActive = false;
+        var isSecondPageLabelActive = false;
+        var portion1ActiveLabel = -1;
+        var portion2ActiveLabel = -1;
+        var portion3ActiveLabel = -1;
+        Array.from(labels).forEach(function (label, index) {
+            label.addEventListener("click", function () {
+                console.log(isFourthLabelActive)
+
+                if (index >= 4 && index <= 7) {
+                    // Handle portion 1 (4, 5, 6, 7)
+                    if (portion1ActiveLabel !== -1) {
+                        check[portion1ActiveLabel].classList.remove("active");
+                        labels[portion1ActiveLabel].classList.remove("active-border");
+                    }
+                    check[index].classList.add("active");
+                    label.classList.add("active-border");
+                    portion1ActiveLabel = index;
+                } else if (index >= 8 && index <= 11) {
+                    // Handle portion 2 (8, 9, 10, 11)
+                    if (portion2ActiveLabel !== -1) {
+                        check[portion2ActiveLabel].classList.remove("active");
+                        labels[portion2ActiveLabel].classList.remove("active-border");
+                    }
+                    check[index].classList.add("active");
+                    label.classList.add("active-border");
+                    portion2ActiveLabel = index;
+                } else if (index >= 12 && index <= 15) {
+                    // Handle portion 3 (12, 13, 14, 15)
+                    if (portion3ActiveLabel !== -1) {
+                        check[portion3ActiveLabel].classList.remove("active");
+                        labels[portion3ActiveLabel].classList.remove("active-border");
+                    }
+                    check[index].classList.add("active");
+                    label.classList.add("active-border");
+                    portion3ActiveLabel = index;
+                } else if (index === 3) {
+                    // Handle index 3
+                    if (label.classList.contains("active-border")) {
+                        check[index].classList.remove("active");
+                        label.classList.remove("active-border");
+                        isFourthLabelActive = false;
+                        enableOtherLabels(); // Mark it as not active
+                    } else {
+                        check[index].classList.add("active");
+                        label.classList.add("active-border");
+                        isFourthLabelActive = true;
+                        console.log(isFourthLabelActive)
+                        disableOtherLabels(); // Mark it as active
+                    }
+                } else {
+                    // Handle labels outside the specified portions
+                    console.log('hello in elese')
+                    if (isFourthLabelActive) {
+                        check[3].classList.remove("active");
+                        labels[3].classList.remove("active-border");
+                        isFourthLabelActive = false
+                    }
+                    if (label.classList.contains("active-border")) {
+                        check[index].classList.remove("active");
+                        label.classList.remove("active-border");
+                    } else {
+                        check[index].classList.add("active");
+                        label.classList.add("active-border");
+                    }
+                }
+                if (isFourthLabelActive) {
+                    labels[3].classList.add("active-border")
+                    check[3].classList.add("active")
+                        enableOtherLabels(); // Mark it as not active
+
+                }
+            });
+        });
+        function disableOtherLabels() {
+            for (var i = 0; i < labels.length; i++) {
+                if (i < 4 || (i >= 4 && i <= 7 && i !== portion1ActiveLabel) || (i >= 8 && i <= 11 && i !== portion2ActiveLabel) || (i >= 12 && i <= 15 && i !== portion3ActiveLabel) || i === 3) {
+                    check[i].classList.remove("active");
+                    labels[i].classList.remove("active-border");
+                    labels[i].setAttribute("disabled", "true");
+                }
+            }
+        }
+
+        function enableOtherLabels() {
+            for (var i = 0; i < labels.length; i++) {
+                if (i < 4 || (i >= 4 && i <= 7) || (i >= 8 && i <= 11) || (i >= 12 && i <= 15) || i === 3) {
+                    labels[i].setAttribute("disabled", "false");
+                }
+            }
+        }
+
+        previous.addEventListener("click", function () {
+
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateButtons();
+            }
+            if (currentIndex === 0) {
+                optionBlock.classList.remove("active")
+                hireTeam.classList.remove("hide")
+
+            }
+        });
+
+        next.addEventListener("click", function () {
+            if (currentIndex < options.length - 1) {
+                currentIndex++;
+                updateButtons();
+            }
+        });
+        document.getElementById("myForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            optionBlock.classList.add("active")
+            hireTeam.classList.add("hide")
+        });
+
+        function updateButtons() {
+            options.forEach((item, index) => {
+                if (index === currentIndex) {
+                    item.classList.add("active");
+                } else {
+                    item.classList.remove("active");
+                }
+            });
+
+            if (currentIndex === options.length - 1) {
+                prevNext.classList.add("hide")
+                next.disabled = true;
+            } else {
+                next.disabled = false;
+            }
+        }
+
+    </script>

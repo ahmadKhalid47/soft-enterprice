@@ -76,13 +76,6 @@ const Home = () => {
     if (tokenFromCookie) {
       postToken();
     }
-    async function getToken() {
-      let msg =await axios.get(
-        `api/storeTokenToDb`
-      );
-      console.log(msg);
-    }
-    getToken();
   }, [tokenVerifierTrigger]);
 
   return (

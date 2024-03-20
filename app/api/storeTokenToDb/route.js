@@ -5,9 +5,19 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   let { tokenFromCookie, userId } = await req.json();
   connectDb();
-  await TokenModel({
+  let tokenAlreadyAvaible = await TokenModel.findOne({
     token: tokenFromCookie,
-    userId: userId,
-  }).save();
+  });
+  if (userId) {
+    await TokenModel({
+      token: tokenFromCookie,
+      userId: userId,
+    }).save();
+  } else {
+    await TokenModel.updateOne(
+      { userId: tokenAlreadyAvaible.userId },
+      { $set: { token: tokenFromCookie } }
+    );
+  }
   return NextResponse.json({ msg: "posted token" });
 }

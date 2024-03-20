@@ -51,7 +51,7 @@ const Home = () => {
   const pageNo = useSelector((state) => state.page.formId);
   const treeWidth = 800; // Set the desired width
   const [tokenVerifierTrigger, setTokenVerifierTrigger] = useState(0);
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState(null);
   const [isVerified, setIsVerified] = useState();
   const defaultFamilyTreeData = [
     { key: "root", name: "Root", marriage: "Spouse" },
@@ -76,7 +76,6 @@ const Home = () => {
     if (tokenFromCookie) {
       postToken();
     }
-    console.log("verified: ", isVerified);
   }, [tokenVerifierTrigger]);
 
   return (

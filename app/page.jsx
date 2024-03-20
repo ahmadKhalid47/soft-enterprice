@@ -68,7 +68,7 @@ const Home = () => {
     let tokenFromCookie = getCookies();
     setIsVerified(verifyToken(tokenFromCookie));
     async function postToken() {
-      axios.post(`https://soft-enterprice-jfac.vercel.app/api/storeTokenToDb`, {
+      axios.post(`/api/storeTokenToDb`, {
         tokenFromCookie,
         userId,
       });
@@ -77,8 +77,8 @@ const Home = () => {
       postToken();
     }
     async function getToken() {
-      let msg = axios.get(
-        `https://soft-enterprice-jfac.vercel.app/api/storeTokenToDb`
+      let msg =await axios.get(
+        `api/storeTokenToDb`
       );
       console.log(msg);
     }

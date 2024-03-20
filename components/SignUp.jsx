@@ -1,4 +1,5 @@
 "use client";
+import { setCookies } from "@app/auth";
 import { formValidation, strength } from "@app/formValidation";
 import axios from "axios";
 import { useState } from "react";
@@ -29,12 +30,9 @@ function SignUp(prop) {
           password,
         });
         result.data.msg
-          ?
-          // localStorage.setItem(
-          //     "token",
-          //     result.data.msg,
-              prop.setToken(result.data.msg)
-            // )
+          ? (setCookies(result.data.msg),
+            prop.setTokenVerifierTrigger(prop.tokenVerifierTrigger + 1),
+            prop.setUserId(result.data.userId))
           : setSignUpError(result.data.error);
       } else {
         setUsernameError("");

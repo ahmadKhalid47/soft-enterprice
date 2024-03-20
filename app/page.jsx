@@ -14,8 +14,9 @@ import Nav from "@components/Nav";
 import Login from "@components/Login";
 import SignUp from "@components/SignUp";
 import Registration from "@components/Registration/page";
-import { local } from "d3";
-import { verifyToken } from "./auth";
+import { create, local } from "d3";
+import { getCookies, verifyToken } from "./auth";
+import axios from "axios";
 
 const familyData = {
   name: "John",
@@ -48,18 +49,10 @@ const Home = () => {
   };
   const message = useSelector((state) => state.popup);
   const pageNo = useSelector((state) => state.page.formId);
-  // const pageNo = 10;
   const treeWidth = 800; // Set the desired width
-  const [token, setToken] = useState(null);
-  // const [verified, setVerified] = useState(false);
-  // useEffect(
-  //   () => () => {
-  //     verifyToken(token) ? setVerified(true) : setVerified(false);
-  //     // console.log(verifyToken(token));
-  //   },
-  //   token
-  // );
-  // console.log(verified);
+  const [tokenVerifierTrigger, setTokenVerifierTrigger] = useState(0);
+  const [userId, setUserId] = useState("");
+  const [isVerified, setIsVerified] = useState();
   const defaultFamilyTreeData = [
     { key: "root", name: "Root", marriage: "Spouse" },
     { key: "father", name: "Father", parent: "root" },
@@ -71,32 +64,49 @@ const Home = () => {
     { key: "child4", name: "Child 4", parent: "mother" },
   ];
 
+  useEffect(() => {
+    let tokenFromCookie = getCookies();
+    setIsVerified(verifyToken(tokenFromCookie));
+    async function postToken() {
+      axios.post(`/api/storeTokenToDb`, {
+        tokenFromCookie,
+        userId,
+      });
+    }
+    if (tokenFromCookie) {
+      postToken();
+    }
+    console.log("verified: ", isVerified);
+  }, [tokenVerifierTrigger]);
+
   return (
     <StoreProvider>
       {/* {message && <Popup message={message.message} type={'success'} onHide={hidePopup} />} */}
-      {token ? (
-        // verified ? (
-          <>
-            {pageNo != 100 ? (
-              <>
-                <Nav />
-                <div className="flex justify-between items-start pt-10 gap-8 h-fit mb-10">
-                  <Sidebar />
-                  <div className="flex flex-col gap-5">
-                    <Form />
-                    <LivePreview />
-                  </div>
+      {isVerified ? (
+        <>
+          {pageNo != 100 ? (
+            <>
+              <Nav />
+              <div className="flex justify-between items-start pt-10 gap-8 h-fit mb-10">
+                <Sidebar />
+                <div className="flex flex-col gap-5">
+                  <Form />
+                  <LivePreview />
                 </div>
-              </>
-            ) : (
-              <FullProposal />
-            )}
-          </>
-        // ) : (
-        //   <Registration setToken={setToken} />
-        // )
+              </div>
+            </>
+          ) : (
+            <FullProposal />
+          )}
+        </>
       ) : (
-        <Registration setToken={setToken} />
+        <>
+          <Registration
+            tokenVerifierTrigger={tokenVerifierTrigger}
+            setTokenVerifierTrigger={setTokenVerifierTrigger}
+            setUserId={setUserId}
+          />
+        </>
       )}
     </StoreProvider>
   );

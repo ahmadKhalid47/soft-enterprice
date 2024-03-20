@@ -1,16 +1,25 @@
+import { getCookies, setCookies } from "@app/auth";
 import Login from "@components/Login";
 import SignUp from "@components/SignUp";
 import { useState } from "react";
 function Registration(prop) {
-  let { setToken } = prop;
+  let { setTokenVerifierTrigger, tokenVerifierTrigger, setUserId } = prop;
   let [showLogin, setShowLogin] = useState(true);
   return (
     <div className="flex justify-center w-screen">
       <div className="flex flex-col items-center w-fit h-screen justify-center p-5">
         {showLogin ? (
-          <Login setToken={setToken} />
+          <Login
+            setTokenVerifierTrigger={setTokenVerifierTrigger}
+            tokenVerifierTrigger={tokenVerifierTrigger}
+            setUserId={setUserId}
+          />
         ) : (
-          <SignUp setToken={setToken} />
+          <SignUp
+            setTokenVerifierTrigger={setTokenVerifierTrigger}
+            tokenVerifierTrigger={tokenVerifierTrigger}
+            setUserId={setUserId}
+          />
         )}
         <div className="bg-blue-200 w-full pb-5 flex items-center justify-center rounded-b-2xl text-xl">
           <p className="pe-2">{showLogin ? "not" : "already"} registered?</p>

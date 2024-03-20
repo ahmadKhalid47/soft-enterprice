@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { formValidation, strength } from "@app/formValidation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { setCookies } from "@app/auth";
 
 function Login(prop) {
   const [username, setName] = useState("");
@@ -14,7 +15,6 @@ function Login(prop) {
   const [loading, setLoading] = useState(false);
 
   async function loginSubmit() {
-    console.log("clocked");
     const formData = {
       username,
       password,
@@ -27,12 +27,10 @@ function Login(prop) {
         password,
       });
       result.data.msg
-        ? // localStorage.setItem(
-          //     "token",
-          //     result.data.msg,
-          prop.setToken(result.data.msg)
-        : // )
-          setLoginError(result.data.error);
+        ? (setCookies(result.data.msg),
+          prop.setTokenVerifierTrigger(prop.tokenVerifierTrigger + 1),
+          prop.setUserId(result.data.userId))
+        : setLoginError(result.data.error);
       setPasswordError(""), setUsernameError("");
     } catch (error) {
       error.inner

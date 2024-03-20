@@ -9,8 +9,8 @@ export async function POST(req) {
   let loginData = await RegistrationModel.findOne({ username: username });
   if (loginData) {
     if (password === loginData.password) {
-      createToken(userData);
-      return NextResponse.json({ msg: createToken(userData) });
+      let token = createToken(userData);
+      return NextResponse.json({ msg: token, userId: loginData._id });
     } else {
       return NextResponse.json({ error: "wrong password" });
     }

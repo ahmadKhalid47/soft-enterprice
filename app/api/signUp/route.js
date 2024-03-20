@@ -11,12 +11,12 @@ export async function POST(req) {
   connectDb();
   let signUpData = await RegistrationModel.findOne({ username: username });
   if (!signUpData) {
-    await RegistrationModel({
+    let storedSignUpData = await RegistrationModel({
       username: username,
       password: password,
     }).save();
-    // createToken(userData);
-    return NextResponse.json({ msg: createToken(userData) });
+    let token = createToken(userData);
+    return NextResponse.json({ msg: token, userId: storedSignUpData._id });
   } else {
     return NextResponse.json({ error: "you already have account" });
   }

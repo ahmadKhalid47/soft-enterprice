@@ -68,17 +68,21 @@ const Home = () => {
     let tokenFromCookie = getCookies();
     setIsVerified(verifyToken(tokenFromCookie));
     async function postToken() {
-      axios.post(
-        `https://soft-enterprice-jfac.vercel.app/api/storeTokenToDb`,
-        {
-          tokenFromCookie,
-          userId,
-        }
-      );
+      axios.post(`https://soft-enterprice-jfac.vercel.app/api/storeTokenToDb`, {
+        tokenFromCookie,
+        userId,
+      });
     }
     if (tokenFromCookie) {
       postToken();
     }
+    async function getToken() {
+      let msg = axios.get(
+        `https://soft-enterprice-jfac.vercel.app/api/storeTokenToDb`
+      );
+      console.log(msg);
+    }
+    getToken();
   }, [tokenVerifierTrigger]);
 
   return (

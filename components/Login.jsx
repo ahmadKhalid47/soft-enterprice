@@ -22,10 +22,13 @@ function Login(prop) {
     try {
       setLoading(true);
       await formValidation.validate(formData, { abortEarly: false });
-      let result = await axios.post("/api/login", {
-        username,
-        password,
-      });
+      let result = await axios.post(
+        "https://soft-enterprice-jfac.vercel.app/api/login",
+        {
+          username,
+          password,
+        }
+      );
       result.data.msg
         ? (setCookies(result.data.msg),
           prop.setTokenVerifierTrigger(prop.tokenVerifierTrigger + 1),

@@ -25,10 +25,13 @@ function SignUp(prop) {
       setLoading(true);
       await formValidation.validate(formData, { abortEarly: false });
       if (rewritePassword === password) {
-        let result = await axios.post("/api/signUp", {
-          username,
-          password,
-        });
+        let result = await axios.post(
+          "https://soft-enterprice-jfac.vercel.app/api/signUp",
+          {
+            username,
+            password,
+          }
+        );
         result.data.msg
           ? (setCookies(result.data.msg),
             prop.setTokenVerifierTrigger(prop.tokenVerifierTrigger + 1),

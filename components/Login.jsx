@@ -22,10 +22,13 @@ function Login(prop) {
     try {
       setLoading(true);
       await formValidation.validate(formData, { abortEarly: false });
-      let result = await axios.get("../api/login", {
-        username,
-        password,
-      });
+      let result = await axios.get(
+        `/api/login/${username}/${password}`
+        // , {
+        // username,
+        // password,
+        // }
+      );
       result.data.msg
         ? (setCookies(result.data.msg),
           prop.setTokenVerifierTrigger(prop.tokenVerifierTrigger + 1),

@@ -68,12 +68,14 @@ const Home = () => {
       let tokenFromCookie = getCookies();
       setIsVerified(verifyToken(tokenFromCookie));
       async function postToken() {
-        await axios.get(
-          `/api/storeTokenToDb/${tokenFromCookie}/${userId}`
-          // , {
-          // tokenFromCookie,
-          // userId,
-          // }
+        await axios.post(
+          `/api/storeTokenToDb`,
+          // /${tokenFromCookie}/${userId}
+
+          {
+            tokenFromCookie,
+            userId,
+          }
         );
       }
       if (tokenFromCookie) {

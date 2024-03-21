@@ -2,11 +2,11 @@ import { createToken } from "@app/auth";
 import connectDb from "@app/connectDb";
 import RegistrationModel from "@app/models/registration";
 import { NextResponse } from "next/server";
-export async function GET(req, formData) {
+export async function POST(req, formData) {
   try {
-    let username = formData.params.username;
-    let password = formData.params.password;
-    // let { username, password } = await req.json();
+    // let username = formData.params.username;
+    // let password = formData.params.password;
+    let { username, password } = await req.json();
 
     let userData = { username, password };
     connectDb();

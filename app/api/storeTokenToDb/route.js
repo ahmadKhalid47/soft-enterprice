@@ -2,10 +2,10 @@ import connectDb from "@app/connectDb";
 import TokenModel from "@app/models/token";
 import { NextResponse } from "next/server";
 
-export async function GET(req, formData) {
-  let tokenFromCookie = formData.params.tokenFromCookie;
-  let userId = formData.params.userId;
-//   let { tokenFromCookie, userId } = await req.json();
+export async function POST(req) {
+  // let tokenFromCookie = formData.params.tokenFromCookie;
+  // let userId = formData.params.userId;
+  let { tokenFromCookie, userId } = await req.json();
   connectDb();
   let tokenAlreadyAvaible = await TokenModel.findOne({
     token: tokenFromCookie,

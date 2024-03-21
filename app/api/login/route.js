@@ -2,7 +2,7 @@
 // import connectDb from "@app/connectDb";
 import { NextResponse } from "next/server";
 // import RegistrationModel from "@app/models/registration";
-export async function POST(req) {
+export async function GET(req) {
   // let { username, password } = await req.json();
   // let userData = { username, password };
   // connectDb();

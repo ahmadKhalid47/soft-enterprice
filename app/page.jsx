@@ -68,7 +68,7 @@ const Home = () => {
       let tokenFromCookie = getCookies();
       setIsVerified(verifyToken(tokenFromCookie));
       async function postToken() {
-        axios.get(
+        await axios.get(
           `/api/storeTokenToDb/${tokenFromCookie}/${userId}`
           // , {
           // tokenFromCookie,

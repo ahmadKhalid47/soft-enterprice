@@ -12,7 +12,6 @@ export function verifyToken(token) {
     jwt.verify(token, securityKey);
     return true;
   } catch (err) {
-    console.log("err in auth: ", err);
     return false;
   }
 }

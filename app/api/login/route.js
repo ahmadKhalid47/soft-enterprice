@@ -1,7 +1,7 @@
-// import { createToken } from "@app/auth";
-// import connectDb from "@app/connectDb";
+import { createToken } from "@app/auth";
+import connectDb from "@app/connectDb";
 import { NextResponse } from "next/server";
-// import RegistrationModel from "@app/models/registration";
+import RegistrationModel from "@app/models/registration";
 export async function GET(req) {
   let { username, password } = await req.json();
   let userData = { username, password };

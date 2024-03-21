@@ -1,5 +1,5 @@
-import { createToken } from "@app/auth";
-import connectDb from "@app/connectDb";
+import { createToken } from "@app/registration/auth";
+import connectDb from "@app/registration/connectDb";
 import RegistrationModel from "@app/models/registration";
 import { NextResponse } from "next/server";
 export async function POST(req, formData) {

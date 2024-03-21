@@ -15,7 +15,7 @@ import Login from "@components/Registration/Login";
 import SignUp from "@components/Registration/SignUp";
 import Registration from "@components/Registration/page";
 import { create, local } from "d3";
-import { getCookies, verifyToken } from "./auth";
+import { getCookies, verifyToken } from "./registration/auth";
 import axios from "axios";
 const familyData = {
   name: "John",

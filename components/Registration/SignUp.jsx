@@ -1,6 +1,6 @@
 "use client";
-import { setCookies } from "@app/auth";
-import { formValidation, strength } from "@app/formValidation";
+import { setCookies } from "@app/registration/auth";
+import { formValidation, strength } from "@app/registration/formValidation";
 import axios from "axios";
 import { useState } from "react";
 

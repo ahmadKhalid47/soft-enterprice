@@ -1,4 +1,4 @@
-import connectDb from "@app/connectDb";
+import connectDb from "@app/registration/connectDb";
 import TokenModel from "@app/models/token";
 import { NextResponse } from "next/server";
 

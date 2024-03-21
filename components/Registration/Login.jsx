@@ -1,9 +1,9 @@
 "use client";
 import axios from "axios";
 import { useState } from "react";
-import { formValidation, strength } from "@app/formValidation";
+import { formValidation, strength } from "@app/registration/formValidation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { setCookies } from "@app/auth";
+import { setCookies } from "@app/registration/auth";
 import { autoType } from "d3";
 
 function Login(prop) {
@@ -64,6 +64,7 @@ function Login(prop) {
       {/* <label className="p-3">password</label> */}
       <div className="flex w-fit justify-end items-center">
         <input
+          name="showPass"
           placeholder="enter password"
           className="ps-6 pe-12 py-3 w-full rounded-full"
           type={showPassword ? "text" : "password"}

@@ -14,7 +14,7 @@ function Login(prop) {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  async function loginSubmit() {
+  const loginSubmit = async () => {
     const formData = {
       username,
       password,
@@ -22,13 +22,10 @@ function Login(prop) {
     try {
       setLoading(true);
       await formValidation.validate(formData, { abortEarly: false });
-      let result = await axios.post(
-        "../api/login",
-        {
-          username,
-          password,
-        }
-      );
+      let result = await axios.post("../api/login", {
+        username,
+        password,
+      });
       result.data.msg
         ? (setCookies(result.data.msg),
           prop.setTokenVerifierTrigger(prop.tokenVerifierTrigger + 1),
@@ -44,7 +41,7 @@ function Login(prop) {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   function clickOnEnterPress(e) {
     e.key === "Enter" ? loginSubmit() : null;

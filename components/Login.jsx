@@ -4,6 +4,7 @@ import { useState } from "react";
 import { formValidation, strength } from "@app/formValidation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { setCookies } from "@app/auth";
+import { autoType } from "d3";
 
 function Login(prop) {
   const [username, setName] = useState("");
@@ -22,14 +23,10 @@ function Login(prop) {
     try {
       setLoading(true);
       await formValidation.validate(formData, { abortEarly: false });
-      let result = await axios.post(
-        `/api/login`,
-        // /${username}/${password}
-        {
-          username,
-          password,
-        }
-      );
+      let result = await axios.post(`/api/login`, {
+        username,
+        password,
+      });
       result.data.msg
         ? (setCookies(result.data.msg),
           prop.setTokenVerifierTrigger(prop.tokenVerifierTrigger + 1),

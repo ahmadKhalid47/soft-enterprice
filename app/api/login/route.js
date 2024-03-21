@@ -7,7 +7,10 @@ export async function GET(req) {
   let userData = { username, password };
   // connectDb();
   // let loginData = await RegistrationModel.findOne({ username: username });
-  let loginData = true;
+  let loginData = {
+    _id: "abcdef",
+    password: "abcdef",
+  };
   if (loginData) {
     if (password === loginData.password) {
       let token = createToken(userData);

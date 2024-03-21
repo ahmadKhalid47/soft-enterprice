@@ -26,7 +26,7 @@ function SignUp(prop) {
       await formValidation.validate(formData, { abortEarly: false });
       if (rewritePassword === password) {
         let result = await axios.post(
-          "/api/signUp",
+          "../api/signUp",
           {
             username,
             password,

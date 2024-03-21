@@ -23,7 +23,7 @@ function Login(prop) {
       setLoading(true);
       await formValidation.validate(formData, { abortEarly: false });
       let result = await axios.post(
-        "/api/login",
+        "../api/login",
         {
           username,
           password,

@@ -17,7 +17,8 @@ import Registration from "@components/Registration/page";
 import { create, local } from "d3";
 import { getCookies, verifyToken } from "./auth";
 import axios from "axios";
-
+import store from "./store";
+// import '../pages/api/storeTokenToDb'
 const familyData = {
   name: "John",
   spouse: "Jane",
@@ -65,17 +66,20 @@ const Home = () => {
   ];
 
   useEffect(() => {
-    let tokenFromCookie = getCookies();
-    setIsVerified(verifyToken(tokenFromCookie));
-    async function postToken() {
-      axios.post(`/api/storeTokenToDb`, {
-        tokenFromCookie,
-        userId,
-      });
-    }
-    if (tokenFromCookie) {
-      postToken();
-    }
+    const storeTokenToDb = async () => {
+      let tokenFromCookie = getCookies();
+      setIsVerified(verifyToken(tokenFromCookie));
+      async function postToken() {
+        axios.post(`/api/storeTokenToDb`, {
+          tokenFromCookie,
+          userId,
+        });
+      }
+      if (tokenFromCookie) {
+        postToken();
+      }
+    };
+    storeTokenToDb();
   }, [tokenVerifierTrigger]);
 
   return (

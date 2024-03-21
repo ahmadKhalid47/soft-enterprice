@@ -1,6 +1,6 @@
 
-import Login from "@components/Login";
-import SignUp from "@components/SignUp";
+import Login from "@components/Registration/Login";
+import SignUp from "@components/Registration/SignUp";
 import { useState } from "react";
 function Registration(prop) {
   let { setTokenVerifierTrigger, tokenVerifierTrigger, setUserId } = prop;

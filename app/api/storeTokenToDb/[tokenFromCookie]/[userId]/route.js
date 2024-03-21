@@ -2,7 +2,7 @@ import connectDb from "@app/connectDb";
 import TokenModel from "@app/models/token";
 import { NextResponse } from "next/server";
 
-export async function POST(req, formData) {
+export async function GET(req, formData) {
   let tokenFromCookie = formData.params.tokenFromCookie;
   let userId = formData.params.userId;
   console.log(tokenFromCookie, userId);

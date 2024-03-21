@@ -17,7 +17,6 @@ import Registration from "@components/Registration/page";
 import { create, local } from "d3";
 import { getCookies, verifyToken } from "./auth";
 import axios from "axios";
-import '../pages/api/storeTokenToDb'
 const familyData = {
   name: "John",
   spouse: "Jane",

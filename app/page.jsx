@@ -17,7 +17,7 @@ import Registration from "@components/Registration/page";
 import { create, local } from "d3";
 import { getCookies, verifyToken } from "./auth";
 import axios from "axios";
-// import '../pages/api/storeTokenToDb'
+import '../pages/api/storeTokenToDb'
 const familyData = {
   name: "John",
   spouse: "Jane",
@@ -69,7 +69,7 @@ const Home = () => {
       let tokenFromCookie = getCookies();
       setIsVerified(verifyToken(tokenFromCookie));
       async function postToken() {
-        axios.post(
+        axios.get(
           `/api/storeTokenToDb/${tokenFromCookie}/${userId}`
           // , {
           // tokenFromCookie,

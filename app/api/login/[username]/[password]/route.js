@@ -11,7 +11,7 @@ export async function GET(req, formData) {
     let userData = { username, password };
     connectDb();
     // let loginData = await RegistrationModel.findOne({ username: username });
-    let loginData = await RegistrationModel.findOne({ username: "abcdef" });
+    let loginData = await RegistrationModel.findOne({ username: username });
     if (loginData) {
       if (password === loginData.password) {
         let token = createToken(userData);
